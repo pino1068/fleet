@@ -1,4 +1,4 @@
-package test.asset;
+package pino.asset;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FleetController {
 	
-	AssetRepository repository;
+	FleetService service;
 
 	@Autowired
-	public FleetController(AssetRepository db) {
-		this.repository = db;
+	public FleetController(FleetService db) {
+		this.service = db;
 	}
 
 	@GetMapping("/greeting")
@@ -26,21 +26,21 @@ public class FleetController {
 			@RequestParam(value = "fleet", defaultValue = "1") String fleet, 
 			@RequestParam(value = "vin", defaultValue = "11") String vin, 
 			@RequestParam(value = "type", defaultValue = "vehicle") String type) {
-		this.repository.add(fleet, new Asset(vin, type));
+		this.service.add(fleet, new Asset(vin, type));
 	}
 
 	@GetMapping("/getAssets")
 	public List<Asset> getAssets(
 			@RequestParam(value = "fleet", defaultValue = "1") String fleet) {
-		return repository.all(fleet);
+		return service.all(fleet);
 	}
 
 	public void removeAsset(String fleet, String vin) {
-		repository.removeByVin(fleet, vin);
+		service.removeByVin(fleet, vin);
 	}
 
 	@GetMapping("/addFleet")
 	public void addFleet(@RequestParam(value = "fleet", defaultValue = "1") String fleet) {
-		repository.addFleet(fleet);
+		service.addFleet(fleet);
 	}
 }

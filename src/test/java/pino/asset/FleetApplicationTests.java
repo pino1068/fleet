@@ -1,4 +1,4 @@
-package test.asset;
+package pino.asset;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,8 +11,8 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import test.asset.Asset;
-import test.asset.FleetController;
+import pino.asset.Asset;
+import pino.asset.FleetController;
 
 class FleetApplicationTests {
 	
@@ -23,7 +23,7 @@ class FleetApplicationTests {
 	@BeforeEach
 	public void setup() {
 		db = new HashMap<>();
-		controller = new FleetController(new AssetInMemoryRepository(db));
+		controller = new FleetController(new FleetInMemoryService(db));
 	}
 
 	@Test

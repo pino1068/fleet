@@ -1,4 +1,4 @@
-package test.asset;
+package pino.asset;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,12 +7,15 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import pino.asset.Asset;
+import pino.asset.FleetService;
+
 @Service
-public class AssetInMemoryRepository implements AssetRepository {
+public class FleetInMemoryService implements FleetService {
 
 	private Map<String, List<Asset>> db = new HashMap<>();
 
-	public AssetInMemoryRepository(Map<String, List<Asset>> db) {
+	public FleetInMemoryService(Map<String, List<Asset>> db) {
 		this.db = db;
 	}
 
@@ -34,5 +37,6 @@ public class AssetInMemoryRepository implements AssetRepository {
 	@Override
 	public void addFleet(String fleet) {
 		db.put(fleet, new ArrayList<>());
-	} 
+	}
+
 }
